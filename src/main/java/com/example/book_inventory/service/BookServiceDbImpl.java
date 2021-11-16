@@ -42,9 +42,6 @@ public class BookServiceDbImpl implements BookService {
     public void updateBook(Book book) {
         bookRepo.updateBook(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getPublisher(), book.getPrice(), book.getStock());
     }
-
-
-
     @Transactional
     @Override
     public Book getBookById(String id) {
