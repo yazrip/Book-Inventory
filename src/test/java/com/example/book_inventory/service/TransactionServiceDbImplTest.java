@@ -4,6 +4,7 @@ import com.example.book_inventory.entity.Book;
 import com.example.book_inventory.entity.Transaction;
 import com.example.book_inventory.entity.User;
 import com.example.book_inventory.repo.TransactionRepo;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,11 @@ public class TransactionServiceDbImplTest {
 
     @BeforeEach
     public void reset() {
+        transactionRepo.deleteAll();
+    }
+
+    @AfterEach
+    public void reset2(){
         transactionRepo.deleteAll();
     }
 
