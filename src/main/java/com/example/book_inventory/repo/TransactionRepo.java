@@ -27,4 +27,7 @@ public interface TransactionRepo extends JpaRepository<Transaction, String> {
     @Query(value = "select * from tr_transaction", nativeQuery = true)
     public List<Transaction> getAllTransaction();
 
+    @Modifying
+    @Query(value = "delete from tr_transaction", nativeQuery = true)
+    public void deleteAll();
 }

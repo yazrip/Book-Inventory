@@ -46,6 +46,6 @@ public interface BookRepo extends JpaRepository<Book, String> {
     public List<Book> getBookById(@Param("id") String id);
 
     @Modifying
-    @Query(value = "delete from mst_user", nativeQuery = true)
+    @Query(value = "delete from mst_book", nativeQuery = true)
     public void deleteAll();
 }
