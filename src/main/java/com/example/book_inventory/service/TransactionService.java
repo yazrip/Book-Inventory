@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TransactionService {
     public void createTransaction(Transaction transaction);
-
+    public List<Transaction> getAllTransaction();
 }

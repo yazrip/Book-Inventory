@@ -12,15 +12,20 @@ import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, String> {
+    public Optional<User> findAccountByUsername(String username);
+
     @Modifying
-    @Query(value = "insert into mst_user(id, name, phone, address) values(:id, :name, :phone, :address)", nativeQuery = true)
+    @Query(value = "insert into mst_user(id, name, phone, address, username, password) values(:id, :name, :phone, :address, :username, :password)", nativeQuery = true)
     public void addUser(@Param("id") String id,
                         @Param("name") String name,
                         @Param("phone") String phone,
-                        @Param("address") String address);
+                        @Param("address") String address,
+                        @Param("username") String username,
+                        @Param("password") String password);
 
     @Modifying
     @Query(value = "select * from mst_user", nativeQuery = true)
@@ -31,11 +36,13 @@ public interface UserRepo extends JpaRepository<User, String> {
     public void deleteUser(@Param("id") String id);
 
     @Modifying
-    @Query(value = "UPDATE mst_user SET name= :name, address= :address, phone= :phone WHERE id= :id", nativeQuery = true)
+    @Query(value = "UPDATE mst_user SET name= :name, address= :address, phone= :phone, username= :username, password= :password WHERE id= :id", nativeQuery = true)
     public void updateUser(@Param("id") String id,
                            @Param("name") String name,
                            @Param("phone") String phone,
-                           @Param("address") String address);
+                           @Param("address") String address,
+                           @Param("username") String username,
+                           @Param("password") String password);
 
     @Modifying
     @Query(value = "select * from mst_user where id=:id", nativeQuery = true)

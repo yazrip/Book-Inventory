@@ -51,5 +51,10 @@ public class TransactionServiceDbImpl implements TransactionService {
         transactionRepo.createTransaction(transaction.getId(), transaction.getQuantity(), transaction.getTotalPrice(), transaction.getTransactionDate(), book.getId(), user.getId());
     }
 
+    @Override
+    public List<Transaction> getAllTransaction() {
+        return transactionRepo.getAllTransaction();
+    }
+
 
 }
