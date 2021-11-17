@@ -45,4 +45,7 @@ public interface BookRepo extends JpaRepository<Book, String> {
     @Query(value = "select * from mst_book where id=:id", nativeQuery = true)
     public List<Book> getBookById(@Param("id") String id);
 
+    @Modifying
+    @Query(value = "delete from mst_user", nativeQuery = true)
+    public void deleteAll();
 }

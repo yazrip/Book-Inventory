@@ -2,6 +2,7 @@ package com.example.book_inventory.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -90,4 +91,16 @@ public class Book {
         this.stock= this.stock - quantity;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(year, book.year) && Objects.equals(publisher, book.publisher) && Objects.equals(price, book.price) && Objects.equals(stock, book.stock);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, year, publisher, price, stock);
+    }
 }

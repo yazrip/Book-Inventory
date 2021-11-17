@@ -54,7 +54,12 @@ public class UserServiceDbImpl implements UserService{
     @Transactional
     @Override
     public User getUserById(String id) {
-        return userRepo.getUserById(id).get(0);
+        if (userRepo.getUserById(id).size()==0){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Id not found!");
+        }
+        else {
+            return userRepo.getUserById(id).get(0);
+        }
     }
 
     @Override

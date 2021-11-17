@@ -47,4 +47,8 @@ public interface UserRepo extends JpaRepository<User, String> {
     @Modifying
     @Query(value = "select * from mst_user where id=:id", nativeQuery = true)
     public List<User> getUserById(@Param("id") String id);
+
+    @Modifying
+    @Query(value = "delete from mst_user", nativeQuery = true)
+    public void deleteAll();
 }

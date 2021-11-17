@@ -2,6 +2,7 @@ package com.example.book_inventory.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tr_transaction")
@@ -98,5 +99,18 @@ public class Transaction {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(id, that.id) && Objects.equals(quantity, that.quantity) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(transactionDate, that.transactionDate) && Objects.equals(bookId, that.bookId) && Objects.equals(userId, that.userId) && Objects.equals(book, that.book) && Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, quantity, totalPrice, transactionDate, bookId, userId, book, user);
     }
 }
